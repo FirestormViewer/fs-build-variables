@@ -46,20 +46,11 @@ underlying suite of variables. Variable names are of the form:
 
 where:
 
-<table>
-<tr>
-<td>product</td>
-<td>VIEWER, SERVER, other. LL for switches to apply to *all* products.</td>
-</tr>
-<tr>
-<td>platform</td>
-<td>WINDOWS, DARWIN, LINUX.</td>
-</tr>
-<tr>
-<td>buildtype</td>
-<td>RELEASE, RELWITHDEBINFO, DEBUG. BASE for switches common to all.</td>
-</tr>
-</table>
+component | meaning
+----------|--------
+product   | VIEWER, SERVER, other. LL for switches to apply to *all* products.
+platform  | WINDOWS, DARWIN, LINUX.
+buildtype | RELEASE, RELWITHDEBINFO, DEBUG. BASE for switches common to all.
 
 These variables are in turn composed of variables that separate out
 command-line macro definitions from other kinds of compiler switches:
@@ -68,12 +59,9 @@ command-line macro definitions from other kinds of compiler switches:
 
 where:
 
-<table>
-<tr>
-<td>category</td>
-<td>MACROS, SWITCHES.</td>
-</tr>
-</table>
+component | meaning
+----------|--------
+category  | MACROS, SWITCHES.
 
 These are typically aggregated into the corresponding
 {product}\_BUILD\_{platform}\_{buildtype} variables:
