@@ -42,33 +42,41 @@ script for function usage.
 The convenience script sources the variables script, which provides the
 underlying suite of variables. Variable names are of the form:
 
-{product}_BUILD_{platform}_{buildtype}
+{product}\_BUILD\_{platform}\_{buildtype}
 
 where:
 
-<dl>
-<dt>product</dt>
-<dd>VIEWER, SERVER, other. LL for switches to apply to *all* products.</dd>
-<dt>platform</dt>
-<dd>WINDOWS, DARWIN, LINUX.</dd>
-<dt>buildtype</dt>
-<dd>RELEASE, RELWITHDEBINFO, DEBUG. BASE for switches common to all.</dd>
-</dl>
+<table>
+<tr>
+<td>product</td>
+<td>VIEWER, SERVER, other. LL for switches to apply to *all* products.</td>
+</tr>
+<tr>
+<td>platform</td>
+<td>WINDOWS, DARWIN, LINUX.</td>
+</tr>
+<tr>
+<td>buildtype</td>
+<td>RELEASE, RELWITHDEBINFO, DEBUG. BASE for switches common to all.</td>
+</tr>
+</table>
 
 These variables are in turn composed of variables that separate out
 command-line macro definitions from other kinds of compiler switches:
 
-{product}_BUILD_{platform}_{buildtype}_{category}
+{product}\_BUILD\_{platform}\_{buildtype}\_{category}
 
 where:
 
-<dl>
-<dt>category</dt>
-<dd>MACROS, SWITCHES.</dd>
-</dl>
+<table>
+<tr>
+<td>category</td>
+<td>MACROS, SWITCHES.</td>
+</tr>
+</table>
 
 These are typically aggregated into the corresponding
-{product}_BUILD_{platform}_{buildtype} variables:
+{product}\_BUILD\_{platform}\_{buildtype} variables:
 
 LL_BUILD_LINUX_RELEASE="$LL_BUILD_LINUX_RELEASE_SWITCHES $LL_BUILD_LINUX_RELEASE_MACROS"
 
