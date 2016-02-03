@@ -36,22 +36,6 @@ function replace_switch {
     echo "$toins $(remove_switch "$todel" "$@")"
 }
 
-case "$OSTYPE" in
-    cygwin)
-        p="WINDOWS"
-        ;;
-    darwin*)
-        p="DARWIN"
-        ;;
-    linux*)
-        p="LINUX"
-        ;;
-    *)
-        echo "Unrecognized platform $OSTYPE" 1>&2
-        exit 2
-        ;;
-esac
-
 # Bring in the variables from the 'variables' script in the same directory as
 # this script. Beware: since this script is itself sourced, its name is NOT in
 # $0, but rather in $BASH_SOURCE!
@@ -63,6 +47,25 @@ source "$(dirname "$BASH_SOURCE")/variables"
 S=(LL VIEWER SERVER)
 T=(BASE RELEASE RELWITHDEBINFO DEBUG)
 X=(_MACROS _SWITCHES "")
+
+case "$OSTYPE" in
+    cygwin)
+        p="WINDOWS"
+        ;;
+    darwin*)
+        p="DARWIN"
+        # On Darwin, it's pointless to define a whole bunch of empty SERVER_
+        # BUILD_* variables. Remove SERVER from the list of software products.
+        S=($(remove_switch SERVER ${S[@]}))
+        ;;
+    linux*)
+        p="LINUX"
+        ;;
+    *)
+        echo "Unrecognized platform $OSTYPE" 1>&2
+        exit 2
+        ;;
+esac
 
 # make aliases for all {product}_BUILD_{platform}_{buildtype}{suffix}
 # variables that eliminate the {platform} part:
@@ -93,10 +96,4 @@ fi
 
 # Since this script is designed to be sourced, explicitly delete temporary
 # variables.
-unset p
-unset S
-unset T
-unset X
-unset s
-unset t
-unset x
+unset p S T X s t x
