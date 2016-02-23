@@ -1,6 +1,5 @@
-# could probably also use 'tr' for this
 function toupper {
-    python -c "print '$1'.upper()"
+    echo "$*" | tr '[a-z]' '[A-Z]'
 }
 
 # Usage:
