@@ -3,6 +3,10 @@ This repository is intended to centralize string data common to many builds
 (such as required compiler switches), both internal to Linden and external, on
 TeamCity and on individual dev machines.
 
+This fork holds data for viewer (and viewer library) builds. Changes here are
+viewer-only. To affect both viewer and server, push to
+http://bitbucket.org/lindenlab/build-variables and pull the changes.
+
 # Bash Usage
 Intended usage is to clone this repository as a sibling to the source
 directory being built, then use the bash "source" or "." commands to read
