@@ -5,7 +5,7 @@ TeamCity and on individual dev machines.
 
 This fork holds data for viewer (and viewer library) builds. Changes here are
 viewer-only. To affect both viewer and server, push to
-http://bitbucket.org/lindenlab/build-variables and pull the changes.
+https://bitbucket.org/lindenlab/build-variables and pull the changes.
 
 # Bash Usage
 Intended usage is to clone this repository as a sibling to the source
