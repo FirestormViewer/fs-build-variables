@@ -15,10 +15,6 @@ which are aliases for the platform-specific variables (e.g.)
 
 LL_BUILD_LINUX_RELEASE, LL_BUILD_LINUX_RELWITHDEBINFO, LL_BUILD_LINUX_DEBUG
 
-as well as product-specific variables
-
-VIEWER_BUILD_RELEASE, VIEWER_BUILD_RELWITHDEBINFO, VIEWER_BUILD_DEBUG
-
 et al.
 
 If you pass a build-type argument (Release, RelWithDebInfo, Debug) when
@@ -26,12 +22,8 @@ sourcing the convenience script, e.g.:
 
     source ../build-variables/convenience Release
 
-then you get additional aliases:
-
-LL_BUILD, VIEWER_BUILD et al.
-
-which (in the example above, assuming you're running on Linux) are the same as
-LL_BUILD_LINUX_RELEASE etc.
+then you get the additional alias LL_BUILD, which (in the example above,
+assuming you're running on Linux) is the same as LL_BUILD_LINUX_RELEASE.
 
 The convenience script also provides bash functions for removing or replacing
 individual switches from any one of those variables. See the comments in the
@@ -42,20 +34,19 @@ script for function usage.
 The convenience script sources the variables script, which provides the
 underlying suite of variables. Variable names are of the form:
 
-{product}\_BUILD\_{platform}\_{buildtype}
+LL\_BUILD\_{platform}\_{buildtype}
 
 where:
 
 component | meaning
 ----------|--------
-product   | VIEWER, SERVER, other. LL for switches to apply to *all* products.
 platform  | WINDOWS, DARWIN, LINUX.
 buildtype | RELEASE, RELWITHDEBINFO, DEBUG. BASE for switches common to all.
 
 These variables are in turn composed of variables that separate out
 command-line macro definitions from other kinds of compiler switches:
 
-{product}\_BUILD\_{platform}\_{buildtype}\_{category}
+LL\_BUILD\_{platform}\_{buildtype}\_{category}
 
 where:
 
@@ -64,7 +55,7 @@ component | meaning
 category  | MACROS, SWITCHES.
 
 These are typically aggregated into the corresponding
-{product}\_BUILD\_{platform}\_{buildtype} variables:
+LL\_BUILD\_{platform}\_{buildtype} variables:
 
 LL_BUILD_LINUX_RELEASE="$LL_BUILD_LINUX_RELEASE_SWITCHES $LL_BUILD_LINUX_RELEASE_MACROS"
 
