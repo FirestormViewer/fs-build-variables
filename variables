@@ -83,7 +83,7 @@ LL_BUILD_DARWIN_DEBUGOS="$LL_BUILD_DARWIN_DEBUG"
 
 # Linux
 LL_BUILD_LINUX_BASE_MACROS="-D_GLIBCXX_USE_CXX11_ABI=0 -DLL_LINUX=1 $LL_BUILD_POSIX_BASE_MACROS"
-LL_BUILD_LINUX_BASE_SWITCHES="-std=gnu++11 -g -fPIC -Wno-unused-local-typedefs -Wno-deprecated -Wno-unused-but-set-variable -Wno-unused-variable -Wno-placement-new -Wno-parentheses -Wno-misleading-indentation"
+LL_BUILD_LINUX_BASE_SWITCHES="-std=gnu++11 -g -fPIC -Wno-unused-local-typedefs -Wno-deprecated -Wno-unused-but-set-variable -Wno-unused-variable -Wno-placement-new -Wno-parentheses -Wno-misleading-indentation -Wduplicated-cond  -Wlogical-op -Wno-catch-value -Wno-class-memaccess"
 LL_BUILD_LINUX_BASE="$LL_BUILD_LINUX_BASE_SWITCHES $LL_BUILD_LINUX_BASE_MACROS"
 
 LL_BUILD_LINUX_RELEASE_MACROS="-DLL_RELEASE=1 $LL_BUILD_LINUX_BASE_MACROS"
