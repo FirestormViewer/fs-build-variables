@@ -59,7 +59,7 @@ LL_BUILD_POSIX_BASE_MACROS="-DLL_OS_DRAGDROP_ENABLED=1"
 
 # Mac
 LL_BUILD_DARWIN_BASE_MACROS="-DPIC -DLL_DARWIN=1 $LL_BUILD_POSIX_BASE_MACROS"
-LL_BUILD_DARWIN_BASE_SWITCHES="-fPIC -gdwarf-2 -stdlib=libc++ -Wno-return-type -Wno-tautological-overlap-compare -mmacosx-version-min=10.11 -iwithsysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/"
+LL_BUILD_DARWIN_BASE_SWITCHES="-fPIC -gdwarf-2 -stdlib=libc++ -Wno-return-type -Wno-tautological-overlap-compare -mmacosx-version-min=10.15 -iwithsysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/"
 LL_BUILD_DARWIN_BASE="$LL_BUILD_DARWIN_BASE_SWITCHES $LL_BUILD_DARWIN_BASE_MACROS"
 
 LL_BUILD_DARWIN_RELEASE_MACROS="-DLL_RELEASE=1 -DLL_RELEASE_FOR_DOWNLOAD=1 -DNDEBUG $LL_BUILD_DARWIN_BASE_MACROS"
