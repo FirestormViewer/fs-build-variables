@@ -1,0 +1,63 @@
+function toupper {
+    echo "$*" | tr '[a-z]' '[A-Z]'
+}
+
+# Usage:
+# switches="$(replace_switch -DPIC -DPOC $LL_BUILD)"
+# It's important NOT to quote whichever compiler-arguments string you pass to
+# replace_switch (LL_BUILD in the example above), just as it's important not to
+# quote it when passing it to the compiler itself: bash must parse into
+# separate tokens.
+function replace_switch {
+    local todel="$1"
+    local toins="$2"
+    shift 2
+    local out=()
+    for sw
+    do
+        if [[ "x$sw" == "x$todel" ]]
+        then out+=("$toins")
+        else out+=("$sw")
+        fi
+    done
+    echo "${out[@]}"
+}
+
+# Usage:
+# switches="$(remove_switch -DPIC $LL_BUILD)"
+# It's important NOT to quote whichever compiler-arguments string you pass to
+# remove_switch (LL_BUILD in the example above), just as it's important not to
+# quote it when passing it to the compiler itself: bash must parse into
+# separate tokens.
+function remove_switch {
+    local todel="$1"
+    shift
+    local out=()
+    for sw
+    do
+        [[ "x$sw" == "x$todel" ]] || out+=("$sw")
+    done
+    echo "${out[@]}"
+}
+
+# Usage:
+# switches="$(remove_match regexp $LL_BUILD)"
+# This is a special case of remove_switch that removes a regular expression.
+function remove_match {
+    local regexp="$1"
+    shift
+    local out=()
+    for sw
+    do
+        [[ "x$sw" =~ x$regexp ]] || out+=("$sw")
+    done
+    echo "${out[@]}"
+}
+
+# Usage:
+# switches="$(remove_cxxver $LL_BUILD)"
+# This is a special case of remove_regexp that removes -std=c++NN
+# (or /std=c++NN, as for Microsoft)
+function remove_cxxver {
+    remove_match "[-/]std=c\+\+[0-9][0-9]" "$@"
+}
