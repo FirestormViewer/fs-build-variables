@@ -34,28 +34,28 @@ See the comments in the script for function usage.
 The [convenience](convenience) script sources the [variables](variables) script, which provides the
 underlying suite of variables. Variable names are of the form:
 
-    LL\_BUILD\_{platform}\_{buildtype}
+    LL_BUILD_{platform}_{buildtype}
 
 where:
 
 component | meaning
 ----------|--------
-platform  | WINDOWS, DARWIN, LINUX.
-buildtype | RELEASE, RELWITHDEBINFO, DEBUG. BASE for switches common to all.
+platform  | `WINDOWS`, `DARWIN`, `LINUX`.
+buildtype | `RELEASE`, `RELWITHDEBINFO`, `DEBUG`. `BASE` for switches common to all.
 
 These variables are in turn composed of variables that separate out
 command-line macro definitions from other kinds of compiler switches:
 
-    LL\_BUILD\_{platform}\_{buildtype}\_{category}
+    LL_BUILD_{platform}_{buildtype}_{category}
 
 where:
 
 component | meaning
 ----------|--------
-category  | MACROS, SWITCHES.
+category  | `MACROS`, `SWITCHES`.
 
 These are typically aggregated into the corresponding
-`LL\_BUILD\_{platform}\_{buildtype}` variables:
+`LL_BUILD_{platform}_{buildtype}` variables:
 
     LL_BUILD_LINUX_RELEASE="$LL_BUILD_LINUX_RELEASE_SWITCHES $LL_BUILD_LINUX_RELEASE_MACROS"
 
