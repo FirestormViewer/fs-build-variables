@@ -124,3 +124,31 @@ function cmake_cxx_standard {
         echo "-DCMAKE_CXX_STANDARD=${sw:$veridx}"
     fi
 }
+
+# To fix this (serious!) problem:
+# clang: warning: overriding '-mmacosx-version-min=10.13' option
+# with '-target x86_64-apple-macos11.7' [-Woverriding-t-option]
+# Usage:
+# switches="$(set_target $LL_BUILD)"
+# If the argument list contains '-mmacosx-version-min=VVVV', find or add
+# '-target x86_64-apple-macosVVVV'.
+function set_target {
+    local opts=("$@")
+    local idx
+    if idx=$(_find _test_re "-mmacosx-version-min=.*" "${opts[@]}")
+    then
+        local versw="${opts[$idx]}"
+        local minver="${versw#*=}"
+        local target="x86_64-apple-macos$minver"
+        if idx=$(_find _test_sw "-target" "${opts[@]}")
+        then
+            # we already have a -target switch; replace its value
+            (( idx+=1 ))
+            opts[$idx]="$target"
+        else
+            # we don't already have a -target switch: add it
+            opts+=(-target "$target")
+        fi
+    fi
+    echo "${opts[*]}"
+}
