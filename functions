@@ -149,6 +149,15 @@ function set_target {
             # we don't already have a -target switch: add it
             opts+=(-target "$target")
         fi
+        local TARGET="-DCMAKE_OSX_DEPLOYMENT_TARGET="
+        if idx=$(_find _test_re "$TARGET.*" "${opts[@]}")
+        then
+            # we already have a -D switch as above; replace it
+            opts[$idx]="$TARGET$minver"
+        else
+            # we don't already have a -D switch as above: add it
+            opts+=("$TARGET$minver")
+        fi
     fi
     echo "${opts[*]}"
 }
