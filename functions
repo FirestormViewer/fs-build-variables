@@ -14,7 +14,7 @@ function _test_re {
 }
 
 # Used by replace_cxxstd, remove_cxxstd
-CXXSTD_REGEXP="[-/]std=c\+\+[0-9][0-9]"
+CXXSTD_REGEXP="[-/]std(=|:)c\+\+[0-9][0-9]"
 
 # Search $3... for a switch matching $2 using $1 (_test_* above)
 # If found, echo index (0 for $3, 1 for $4...) and return 0.
